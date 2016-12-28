@@ -17,12 +17,11 @@ p {
   pointer-events: stroke;
   stroke-width: 50px;
   cursor: crosshair;
-}
-
-.track-overlay line {
   stroke: black; /*<-- give it a stroke */
   opacity: 0; /*<-- but don't show it */ 
 }
+
+
 
 .track {
   stroke: #000;
