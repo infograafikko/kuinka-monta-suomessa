@@ -80,6 +80,7 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 
 	var buttonGroup = svg.append("g")
 		.attr("class", "buttonGroup")
+		.on("click", function() { return getResults();} );
 
 	var button = buttonGroup.append("rect")
 		.attr("class", "button")
@@ -88,7 +89,6 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 		.attr("width", width)
 		.attr("height", 30)
 		.attr("fill", "#1F93FF")
-		.on("click", function() { return getResults();} );
 
 	var buttonText = buttonGroup.append("text")
 		.attr("class", "buttonText")
