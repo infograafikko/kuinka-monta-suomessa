@@ -12,13 +12,10 @@ p {
   font: 10px sans-serif;
 }
 
-
-.track-overlay {
-  pointer-events: stroke;
-  stroke-width: 50px;
-  cursor: crosshair;
-  stroke: black; /*<-- give it a stroke */
-  opacity: 0; /*<-- but don't show it */ 
+.track,
+.track-inset,
+.track-overlay{
+  stroke-linecap: round;
 }
 
 
@@ -32,6 +29,15 @@ p {
 .track-inset {
   stroke: #ddd;
   stroke-width: 8px;
+}
+
+.track-overlay{
+  pointer-events: stroke;
+  stroke-linecap: round;
+  stroke-width: 50px;
+  cursor: crosshair;
+  stroke: black; /*<-- give it a stroke */
+  opacity: 0; /*<-- but don't show it */ 
 }
 
 .handle {
