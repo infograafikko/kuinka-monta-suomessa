@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <title>How many?</title>
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Homenaje" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="style/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.4.0/d3.min.js"></script>
+	<script src="scripts/quiz.js"></script>
+</head>
+<style>
+
+</style>
+<body>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.4/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD0WD9SdNfBUYK9zbmOtW1wdFHW0e0W3Lc",
+    authDomain: "how-many-a9c8a.firebaseapp.com",
+    databaseURL: "https://how-many-a9c8a.firebaseio.com",
+    storageBucket: "how-many-a9c8a.appspot.com",
+    messagingSenderId: "996659641777"
+  };
+  firebase.initializeApp(config);
+
+    var firebaseRef = firebase.database().ref();
+
+
+
+</script>
+<h1>1. Saunat Suomessa</h1>
+<p>Kuinka monta saunaa on Suomessa 100 suomalaista kohti?</p>
+<svg id = "kys1" width="700" height="450"></svg>
+<script type="text/javascript">
+callEverything("kys1", 64, "Suomessa on ", " saunaa", "100 suomalaista kohti.", "Suomessa on 3,5 miljoonaa saunaa,", "eli ", " saunaa 100 suomalaista kohti.");
+</script>
+<h1>2. Kesämökit Suomessa</h1>
+<p>Kuinka monta kesämökkiä on Suomessa 100 suomalaista kohti?</p>
+<svg id = "kys2" width="700" height="450"></svg>
+<script type="text/javascript">
+callEverything("kys2", 9, "Suomessa on ", " kesämökkiä", "100 suomalaista kohti.", "Suomessa on 500 000 mökkiä,", "eli ", " kesämökkiä 100 suomalaista kohti.");
+</script>
+<h1>3. Matkapuhelimien myynti</h1>
+<p>Kuinka monta matkapuhelinta myydään vuodessa 100 suomalaista kohti?</p>
+<svg id = "kys3" width="700" height="450"></svg>
+<script type="text/javascript">
+callEverything("kys3", 40, "Suomessa myydään ", " kännykkää", "100 suomalaista kohti.", "V. 2015 myytiin 2,2 miljoonaa kännykkää,", "eli ", " laitetta 100 suomalaista kohti.");
+</script>
+<h1>4. Koirien määrä Suomessa?</h1>
+<p>Kuinka monta koiraa Suomessa on 100 suomalaista kohti?</p>
+<svg id = "kys4" width="700" height="450"></svg>
+<script type="text/javascript">
+callEverything("kys4", 10, "Suomessa on ", " koiraa", "100 suomalaista kohti.", "Suomessa on 600 000 koiraa,", "eli ", " koiraa 100 suomalaista kohti.");
+</script>
+</body>
