@@ -1,4 +1,4 @@
-function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAnswer2, rAnswer3) {
+function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAnswer2, rAnswer3, source) {
 
 	//Database setup
 
@@ -92,6 +92,7 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 
 	var buttonText = buttonGroup.append("text")
 		.attr("class", "buttonText")
+		.attr("pointer-events", "none")
 		.attr("x", width/2 - 15)
 		.attr("y", height*0.47)
 		.text("Katso oikea vastaus")
@@ -384,6 +385,22 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 			.attr("font-family", "Merriweather Sans")
 			.attr("font-size", "10px")
 			.attr("fill", "gray")
+
+		//Source text
+
+		svg.append("a")
+			.attr("xlink:href", source)
+			.append("text")
+			.attr("target", "_blank")
+			.attr("class", "source")
+			.attr("x", width*0.13)
+			.attr("y", height* 1.53)
+			.text("Lähde")
+			.attr("font-family", "Merriweather Sans")
+			.attr("font-size", "15px")
+			.attr("fill", "#1F93FF")
+
+		//Text transition
 
 		svg.selectAll(".explain-text")
 			.style("opacity", 0)
