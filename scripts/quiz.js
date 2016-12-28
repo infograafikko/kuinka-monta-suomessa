@@ -47,7 +47,7 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 	    .attr("class", "track-overlay")
 	    .call(d3.drag()
 	        .on("start.interrupt", function() { slider.interrupt(); })
-	        .on("start drag", function() { hue(x.invert(d3.event.x)); }));
+	        .on("drag", function() { hue(x.invert(d3.event.x)); }));
 
 	slider.insert("g", ".track-overlay")
 	    .attr("class", "ticks")
