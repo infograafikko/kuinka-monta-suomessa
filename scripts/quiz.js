@@ -66,12 +66,12 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 	    .attr("class", "handle")
 	    .attr("r", 9);
 
-//	slider.transition() // Gratuitous intro!
-//	    .duration(750)
-//	   .tween("hue", function() {
-//	     var i = d3.interpolate(0, 50);
-//	     return function(t) { hue(i(t)); };
-//	   });
+slider.transition() // Gratuitous intro!
+   .duration(0)
+   .tween("hue", function() {
+    var i = d3.interpolate(0, 50);
+     return function(t) { hue(i(t)); };
+   });
 
 	// Pictogram setup
 
@@ -200,9 +200,10 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 	function update(j) {
 		numberTextGuess
 			.attr("x", j + 50)
-			.attr("y",height*0.17)
+			.attr("y",height*0.12)
 			.attr("text-anchor", "middle")
 			.attr("font-family", "Merriweather Sans")
+			.attr("font-size", "25px")
 			.text(guessData);  
 	}
 
@@ -310,9 +311,10 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 
 		numberTextRight
 			.attr("x", rightPos)
-			.attr("y",height*0.17)
+			.attr("y",height*0.12)
 			.attr("text-anchor", "middle")
 			.attr("font-family", "Merriweather Sans")
+			.attr("font-size", "25px")
 			.text(right);  
 
 		compareLineRight
