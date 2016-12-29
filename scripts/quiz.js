@@ -1,4 +1,4 @@
-function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAnswer2, rAnswer3, source) {
+function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAnswer2, rAnswer3, source, pikscale, bufferwidth, bufferheight, xpad, pik) {
 
 	//Database setup
 
@@ -15,8 +15,6 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 	});
 
 	//SVG Setup
-
-
 	var svg = d3.select("svg#" + qID),
 	    margin = {right: 50, left: 50, top: 10, bottom: 150},
 	    width = +svg.attr("width") - margin.left - margin.right,
@@ -68,13 +66,82 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 	    .attr("class", "handle")
 	    .attr("r", 9);
 
-	slider.transition() // Gratuitous intro!
-	    .duration(750)
-	   .tween("hue", function() {
-	     var i = d3.interpolate(0, 50);
-	     return function(t) { hue(i(t)); };
-	   });
+//	slider.transition() // Gratuitous intro!
+//	    .duration(750)
+//	   .tween("hue", function() {
+//	     var i = d3.interpolate(0, 50);
+//	     return function(t) { hue(i(t)); };
+//	   });
 
+	// Pictogram setup
+
+	function piktogram() {
+    	//define an icon store it in svg <defs> elements as a reusable component - this geometry can be generated from Inkscape, Illustrator or similar
+	    svg.append("defs")
+	    	.append("g")
+	    	.attr("transform", "scale("+pikscale+")")
+	   		.attr("id","iconCustom#"+qID)
+	        .append("path")
+	        .attr("d",pik)
+
+		//specify the number of columns and rows for pictogram layout
+	    var numCols = 20;
+	    var numRows = 5;
+
+	    //padding for the grid
+	    var xPadding = xpad;
+	    var yPadding = 160;
+	            
+	    //horizontal and vertical spacing between the icons
+	    var hBuffer = bufferheight;
+	    var wBuffer = bufferwidth;
+
+		//generate a d3 range for the total number of required elements
+		var myIndex=d3.range(numCols*numRows);
+
+	 	svg.append("g")
+	        .attr("class","pictoLayer")
+	        .selectAll("use")
+	        .data(myIndex)
+	        .enter()
+	        .append("use")
+	            .attr("xlink:href","#iconCustom#" + qID)
+	            .attr("id",function(d)    {
+	                return "icon"+d;
+	            })
+	            .attr("x",function(d) {
+	                var remainder=d % numCols;//calculates the x position (column number) using modulus
+	                return xPadding+(remainder*wBuffer);//apply the buffer and return value
+	                })
+	            .attr("y",function(d) {
+	                var whole=Math.floor(d/numCols)//calculates the y position (row number)
+	                return yPadding+(whole*hBuffer);//apply the buffer and return the value
+	                })
+	                .classed("iconPlain",true);
+
+	    svg.append("g")
+	        .attr("class","pictoLayer")
+	        .selectAll("use")
+	        .data(myIndex)
+	        .enter()
+	        .append("use")
+	            .attr("xlink:href","#iconCustom#" + qID)
+	            .attr("class",function(d)    {
+	                return "icon"+d;
+	            })
+	            .attr("x",function(d) {
+	                var remainder=d % numCols;//calculates the x position (column number) using modulus
+	                return xPadding+(remainder*wBuffer);//apply the buffer and return value
+	            })
+	            .attr("y",function(d) {
+	                var whole=Math.floor(d/numCols)//calculates the y position (row number)
+	                return yPadding+(whole*hBuffer);//apply the buffer and return the value
+	                })
+	                .classed("iconPlain",true);
+
+	    };
+
+	piktogram();
 
 	//button for saving results 
 
@@ -116,6 +183,15 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 	  handle.attr("cx", x(h));
 	  guessData = Math.round(h);
 	  guessPos = x(h);
+
+
+	svg.selectAll("use").attr("class",function(d, i){
+        if (d<guessData)  {
+            return "iconSelected";
+        } else {
+            return "iconPlain";
+        }
+        });
 
 	 update(guessPos);
 
@@ -298,6 +374,12 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 
 		svg.select(".track-overlay")
 			.on(".drag", null);
+
+		svg.selectAll(".pictoLayer")
+			.transition()
+			.style("opacity", 0)
+			.duration(450);
+
 		
 		};
 
@@ -390,8 +472,8 @@ function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAns
 
 		svg.append("a")
 			.attr("xlink:href", source)
-			.append("text")
 			.attr("target", "_blank")
+			.append("text")
 			.attr("class", "source")
 			.attr("x", width*0.13)
 			.attr("y", height* 1.53)

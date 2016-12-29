@@ -93,3 +93,10 @@ p {
     fill:  #005fb8;
 }
 
+.iconPlain  {
+    fill:lightgray;   
+}
+
+.iconSelected  {
+    fill: #FF4338;   
+}
