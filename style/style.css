@@ -1,11 +1,32 @@
 h1 {
 	font-family: 'Homenaje', sans-serif;
 	color: #333333;
+  padding-left: 40px;
+  padding-top: 5px;
+}
+
+h2 {
+  font-family: 'Homenaje', sans-serif;
+  color: #333333;
+  padding-left: 40px;
+  text-decoration: underline;
 }
 
 p {
+  max-width: 620px;
 	font-family: 'Merriweather Sans', sans-serif;
 	font-weight: lighter;
+  padding-left: 40px;
+}
+
+/* unvisited link */
+a:link {
+    color: #1F93FF;
+}
+
+/* visited link */
+a:visited {
+    color: #1F93FF;
 }
 
 .ticks {
@@ -99,4 +120,49 @@ p {
 
 .iconSelected  {
     fill: #FF4338;   
+}
+
+.signature {
+    max-width: 640px;
+    background-color: #262626;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-left: 30px;
+
+}
+
+.signature p {
+    text-align: center;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+.signature a:link {
+    color: white;
+}
+
+/* visited link */
+.signature a:visited {
+    color: white;
+}
+
+.wrapper {
+    max-width: 640px;
+    max-height: 100%;
+    margin-left: 30px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    background-color: #F1F1F1;
+}
+
+.wrapper p{
+    padding-left: 5px;
+    text-align: center;
+}
+
+.wrapper h1{
+    padding-left: 5px;
+    text-align: center;
 }
