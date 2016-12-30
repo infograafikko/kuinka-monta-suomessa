@@ -1,4 +1,4 @@
-function callEverything(qID, right, yAnswer1, yAnswer2, yAnswer3, rAnswer1, rAnswer2, rAnswer3, source, pikscale, bufferwidth, bufferheight, xpad, pik) {
+function callEverything(qID, right, yAnswer1, yAnswer2, rAnswer1, rAnswer2, rAnswer3, source, pikscale, bufferwidth, bufferheight, xpad, pik) {
 
 	//Database setup
 
@@ -411,7 +411,7 @@ slider.transition() // Gratuitous intro!
 			.attr("class", "explain-text")
 			.attr("x", width* 0.13)
 			.attr("y", height * 1.42)
-			.text(guessData + yAnswer2 + yAnswer3)
+			.text(guessData + yAnswer2)
 			.attr("font-family", "Merriweather Sans")
 			.attr("font-weight", "lighter")
 			.attr("font-size", "15px")
