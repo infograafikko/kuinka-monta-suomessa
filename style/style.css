@@ -56,9 +56,8 @@ a:visited {
   pointer-events: stroke;
   stroke-linecap: round;
   stroke-width: 50px;
-  cursor: crosshair;
   stroke: black; /*<-- give it a stroke */
-  opacity: 0; /*<-- but don't show it */ 
+  opacity: 0; /*<-- but don't show it */
 }
 
 .handle {
@@ -115,11 +114,11 @@ a:visited {
 }
 
 .iconPlain  {
-    fill:lightgray;   
+    fill:lightgray;
 }
 
 .iconSelected  {
-    fill: #FF4338;   
+    fill: #FF4338;
 }
 
 .signature {
@@ -185,17 +184,17 @@ a:visited {
 }
 
 .img-wrapper  {
-    position: relative; 
+    position: relative;
     margin-left: 30px;
     width: 100%; /* for IE 6 */
     overflow:auto;
 }
 
-.img-wrapper h1 { 
+.img-wrapper h1 {
    position: absolute;
    padding-left: 35px;
    top: 220px;
-   width: 605px; 
+   width: 605px;
    background: rgb(0, 0, 0); /* fallback color */
    background: rgba(0, 0, 0, 0.7);
    color: white;
