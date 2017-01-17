@@ -188,8 +188,7 @@ a:visited {
 .img-wrapper  {
     position: relative;
     margin-left: 30px;
-    width: 100%; /* for IE 6 */
-    overflow:auto;
+		max-width: 100%;
 }
 
 .img-wrapper h1 {
