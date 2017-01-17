@@ -1,4 +1,6 @@
-function callEverything(qID, right, yAnswer1, yAnswer2, rAnswer1, rAnswer2, rAnswer3, source, pikscale, bufferwidth, bufferheight, xpad, pik) {
+
+//function to call quiz module
+function callEverything(qID, right, yAnswer1, yAnswer2, rAnswer1, rAnswer2, rAnswer3, source, pikscale, bufferwidth, bufferheight, padding, pik) {
 
 	//Database setup
 
@@ -33,8 +35,11 @@ function callEverything(qID, right, yAnswer1, yAnswer2, rAnswer1, rAnswer2, rAns
 	    .attr("class", "slider")
 	    .attr("transform", "translate(" + margin.left + "," + height / 4 + ")");
 
+
+	//define default guess is 50
 	var guessData = [50];
 
+	//Implement slider
 	slider.append("line")
 	    .attr("class", "track")
 	    .attr("x1", x.range()[0])
@@ -58,8 +63,8 @@ function callEverything(qID, right, yAnswer1, yAnswer2, rAnswer1, rAnswer2, rAns
 	    .text(function(d) { return d; })
 	    .attr("font-family", "Merriweather Sans");
 
-	var numberTextGuess = svg.append("text");    
-	var numberTextRight = svg.append("text");    
+	var numberTextGuess = svg.append("text");
+	var numberTextRight = svg.append("text");
 
 
 	var handle = slider.insert("circle", ".track-overlay")
@@ -89,16 +94,17 @@ slider.transition() // Gratuitous intro!
 	    var numRows = 5;
 
 	    //padding for the grid
-	    var xPadding = xpad;
+	    var xPadding = padding;
 	    var yPadding = 160;
-	            
+
 	    //horizontal and vertical spacing between the icons
 	    var hBuffer = bufferheight;
 	    var wBuffer = bufferwidth;
 
 		//generate a d3 range for the total number of required elements
-		var myIndex=d3.range(numCols*numRows);
+		var myIndex = d3.range(numCols*numRows);
 
+		//Append pictograms
 	 	svg.append("g")
 	        .attr("class","pictoLayer")
 	        .selectAll("use")
@@ -143,7 +149,7 @@ slider.transition() // Gratuitous intro!
 
 	piktogram();
 
-	//button for saving results 
+	//Katso oikea vastaus button
 
 	var buttonGroup = svg.append("g")
 		.attr("class", "buttonGroup")
@@ -167,7 +173,7 @@ slider.transition() // Gratuitous intro!
 		.attr("fill", "#fff")
 
 
-
+	//Save variables for guess Line, right line and circleRight.
 	var compareLineGuess = svg.append("line")
 		.attr("class", "compareLineGuess")
 
@@ -178,25 +184,27 @@ slider.transition() // Gratuitous intro!
 
 		rightPos = x(right) + 50;
 
-
+	//Function is ran when user drags slider
 	function hue(h) {
 	  handle.attr("cx", x(h));
+		//Save the position of slider as numeric value
 	  guessData = Math.round(h);
 	  guessPos = x(h);
 
+		//Decide based on guessData whether piktogram is colored or gray
+		svg.selectAll("use").attr("class",function(d, i){
+	        if (d<guessData)  {
+	            return "iconSelected";
+	        } else {
+	            return "iconPlain";
+	        }
+	        });
 
-	svg.selectAll("use").attr("class",function(d, i){
-        if (d<guessData)  {
-            return "iconSelected";
-        } else {
-            return "iconPlain";
-        }
-        });
-
-	 update(guessPos);
+		 update(guessPos);
 
 	}
 
+	//Update numeric value over slider handle
 	function update(j) {
 		numberTextGuess
 			.attr("x", j + 50)
@@ -204,15 +212,16 @@ slider.transition() // Gratuitous intro!
 			.attr("text-anchor", "middle")
 			.attr("font-family", "Merriweather Sans")
 			.attr("font-size", "25px")
-			.text(guessData);  
+			.text(guessData);
 	}
 
+	//Function for getting results after clicking "Katso oikea vastaus"
 	function getResults() {
 
 		callHist();
 		dissapear();
 		addRightAnswer();
-		legendKey();
+		legendAndText();
 
 		//Push data to database
 		date = Date.now()
@@ -222,7 +231,6 @@ slider.transition() // Gratuitous intro!
 	}
 
 	//make a histogram setup
-
 	function callHist() {
 
 		var formatPercent = d3.format(".0%");
@@ -234,15 +242,18 @@ slider.transition() // Gratuitous intro!
 			.domain([0,100])
 			.rangeRound([0, width])
 
+		//Create 20 bins for histograms
 		bins = d3.histogram()
 			.domain(xHist.domain())
 			.thresholds(xHist.ticks(20))
 			(childData);
 
+		//The height of histogram
 		var yHist = d3.scaleLinear()
 			.domain([0, d3.max(bins, function(d) { return d.length; })])
 			.range([height, height*0.3]);
 
+		//Label axis on the left of the chart
 		var pctHist = d3.scaleLinear()
 			.domain([0, d3.max(bins, function(d) { return d.length / childData.length; })])
 			.range([height, height*0.3]);
@@ -276,6 +287,7 @@ slider.transition() // Gratuitous intro!
 				.tickSizeOuter(0)
 				)
 
+		//Remove "0%" from the histogram label
 		g.selectAll(".tick")
 	    .each(function (d, i) {
 	        if ( d == 0 ) {
@@ -300,7 +312,7 @@ slider.transition() // Gratuitous intro!
 
 	function addRightAnswer() {
 
-		//Add right answer with the text and the line
+		//Add right answer with the text and the line using transition
 		circleRight
 			.attr("class", "circleRight")
 			.attr("cx", rightPos)
@@ -315,7 +327,7 @@ slider.transition() // Gratuitous intro!
 			.attr("text-anchor", "middle")
 			.attr("font-family", "Merriweather Sans")
 			.attr("font-size", "25px")
-			.text(right);  
+			.text(right);
 
 		compareLineRight
 			.attr("x1", rightPos)
@@ -348,7 +360,7 @@ slider.transition() // Gratuitous intro!
 
 	function dissapear() {
 
-		//Make a things invisible
+		//Make a slider and handle dissapear after clicking "Katso oikea vastaus"
 		svg.selectAll(".buttonGroup")
 				.transition()
 				.style("opacity", 0)
@@ -382,10 +394,13 @@ slider.transition() // Gratuitous intro!
 			.style("opacity", 0)
 			.duration(450);
 
-		
+
 		};
 
-	function legendKey() {
+
+	//Show legend of red and blue circle AND show explaining text
+
+	function legendAndText() {
 
 		//Vastauksesi
 
@@ -396,6 +411,7 @@ slider.transition() // Gratuitous intro!
 			.text("Vastauksesi")
 			.attr("font-family", "Merriweather Sans")
 
+		//Append yAnswer1
 		svg.append("text")
 			.attr("class", "explain-text")
 			.attr("x", width* 0.13)
@@ -406,7 +422,7 @@ slider.transition() // Gratuitous intro!
 			.attr("font-size", "15px")
 
 
-
+		//Append your guess and yAnswer2
 		svg.append("text")
 			.attr("class", "explain-text")
 			.attr("x", width* 0.13)
@@ -415,7 +431,6 @@ slider.transition() // Gratuitous intro!
 			.attr("font-family", "Merriweather Sans")
 			.attr("font-weight", "lighter")
 			.attr("font-size", "15px")
-
 
 		svg.append("circle")
 			.attr("class", "explain-text")
