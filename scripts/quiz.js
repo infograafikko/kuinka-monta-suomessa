@@ -1,6 +1,6 @@
 
 //function to call quiz module
-function callEverything(qID, right, yAnswer1, yAnswer2, rAnswer1, rAnswer2, rAnswer3, source, pikscale, bufferwidth, bufferheight, padding, pik) {
+function callEverything(qID, right, yAnswer1, yAnswer2, rAnswer1, rAnswer2, rAnswer3, source, pikscale, bufferwidth, bufferheight, xMarginPic, pik) {
 
 	//Database setup
 
@@ -16,9 +16,11 @@ function callEverything(qID, right, yAnswer1, yAnswer2, rAnswer1, rAnswer2, rAns
  	 });
 	});
 
+	var leftMargin = 50;
+
 	//SVG Setup
 	var svg = d3.select("svg#" + qID),
-	    margin = {right: 50, left: 50, top: 10, bottom: 150},
+	    margin = {right: 50, left: leftMargin, top: 10, bottom: 150},
 	    width = +svg.attr("width") - margin.left - margin.right,
 	    height = +svg.attr("height") - margin.top - margin.bottom;
 
@@ -94,7 +96,7 @@ slider.transition() // Gratuitous intro!
 	    var numRows = 5;
 
 	    //padding for the grid
-	    var xPadding = padding;
+	    var xPadding = xMarginPic;
 	    var yPadding = 160;
 
 	    //horizontal and vertical spacing between the icons
@@ -182,7 +184,7 @@ slider.transition() // Gratuitous intro!
 
 	var circleRight = svg.append("circle")
 
-		rightPos = x(right) + 50;
+		rightPos = x(right) + leftMargin;
 
 	//Function is ran when user drags slider
 	function hue(h) {
@@ -207,7 +209,7 @@ slider.transition() // Gratuitous intro!
 	//Update numeric value over slider handle
 	function update(j) {
 		numberTextGuess
-			.attr("x", j + 50)
+			.attr("x", j + leftMargin)
 			.attr("y",height*0.12)
 			.attr("text-anchor", "middle")
 			.attr("font-family", "Merriweather Sans")
@@ -344,17 +346,17 @@ slider.transition() // Gratuitous intro!
 
 		//Make comparison line visible
 		compareLineGuess
-			.attr("x1", guessPos + 50)
+			.attr("x1", guessPos + leftMargin)
 			.attr("y1", height/4)
-			.attr("x2", guessPos + 50)
+			.attr("x2", guessPos + leftMargin)
 			.attr("y2", height/4)
 			.attr("stroke-width", 2)
 			.style("stroke-dasharray", ("3,3"))
 			.attr("stroke", "#1F93FF")
 			.transition()
 			.duration(300)
-			.attr("x2", guessPos + 50)
-			.attr("y2", height+margin.top);
+			.attr("x2", guessPos + leftMargin)
+			.attr("y2", height + margin.top);
 
 		};
 
