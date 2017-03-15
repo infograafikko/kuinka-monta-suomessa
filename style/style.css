@@ -23,12 +23,12 @@ p {
 
 /* unvisited link */
 a:link {
-    color: #046FDC;
+    color: #1F93FF;
 }
 
 /* visited link */
 a:visited {
-    color: #046FDC;
+    color: #1F93FF;
 }
 
 .ticks {
@@ -63,14 +63,14 @@ a:visited {
 }
 
 .handle {
-  fill: #046FDC;
+  fill: #1F93FF;
   stroke: #000;
   stroke-opacity: 0.5;
   stroke-width: 1.25px;
 }
 
 .circleRight {
-  fill: #DC0E00;
+  fill: #FF4338;
   stroke: #000;
   stroke-opacity: 0.5;
   stroke-width: 1.25px;
@@ -120,7 +120,7 @@ a:visited {
 }
 
 .iconSelected  {
-    fill: #DC0E00;
+    fill: #FF4338;
 }
 
 .signature {

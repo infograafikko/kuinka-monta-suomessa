@@ -163,7 +163,7 @@ slider.transition() // Gratuitous intro!
 		.attr("y", height*0.4)
 		.attr("width", width)
 		.attr("height", 30)
-		.attr("fill", "#046FDC")
+		.attr("fill", "#1F93FF")
 
 	var buttonText = buttonGroup.append("text")
 		.attr("class", "buttonText")
@@ -338,7 +338,7 @@ slider.transition() // Gratuitous intro!
 			.attr("y2", height/4)
 			.attr("stroke-width", 2)
 			.style("stroke-dasharray", ("3,3"))
-			.attr("stroke", "#DC0E00")
+			.attr("stroke", "#FF4338")
 			.transition()
 			.duration(300)
 			.attr("x2", rightPos)
@@ -352,7 +352,7 @@ slider.transition() // Gratuitous intro!
 			.attr("y2", height/4)
 			.attr("stroke-width", 2)
 			.style("stroke-dasharray", ("3,3"))
-			.attr("stroke", "#046FDC")
+			.attr("stroke", "#1F93FF")
 			.transition()
 			.duration(300)
 			.attr("x2", guessPos + leftMargin)
@@ -439,7 +439,7 @@ slider.transition() // Gratuitous intro!
 			.attr("cx", width * 0.1)
 			.attr("cy", height * 1.23)
 			.attr("r", 9)
-			.style("fill", "#046FDC");
+			.style("fill", "#1F93FF");
 
 
 		//Oikea vastaus
@@ -474,7 +474,7 @@ slider.transition() // Gratuitous intro!
 			.attr("cx", width*0.57)
 			.attr("cy", height * 1.23)
 			.attr("r", 9)
-			.style("fill", "#DC0E00");
+			.style("fill", "#FF4338");
 
 		// Histogram text
 
@@ -482,24 +482,24 @@ slider.transition() // Gratuitous intro!
 			.attr("class","explain-text")
 			.attr("x", width*0.89)
 			.attr("y", height*0.45)
-			.text("Seminaariin osallistujat")
+			.text("Infograafikko.fi-lukijat")
 			.attr("font-family", "Merriweather Sans")
 			.attr("font-size", "10px")
 			.attr("fill", "gray")
 
 		//Source text
 
-//		svg.append("a")
-//			.attr("xlink:href", source)
-//			.attr("target", "_blank")
-//			.append("text")
-//			.attr("class", "source")
-//			.attr("x", width*0.13)
-//			.attr("y", height* 1.53)
-//			.text("Lähde")
-//			.attr("font-family", "Merriweather Sans")
-//			.attr("font-size", "15px")
-//			.attr("fill", "#046FDC")
+		svg.append("a")
+			.attr("xlink:href", source)
+			.attr("target", "_blank")
+			.append("text")
+			.attr("class", "source")
+			.attr("x", width*0.13)
+			.attr("y", height* 1.53)
+			.text("Lähde")
+			.attr("font-family", "Merriweather Sans")
+			.attr("font-size", "15px")
+			.attr("fill", "#1F93FF")
 
 		//Text transition
 
